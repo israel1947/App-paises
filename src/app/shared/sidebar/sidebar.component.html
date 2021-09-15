@@ -1,0 +1,28 @@
+<h2>Busquedas</h2>
+        <hr>
+        <ul class="list-group sidebar-list ">
+
+            <li
+            routerLink=""
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="list-group-item">Buscar País
+            </li>
+            <!--routerLinkActive: este activa el color que le demos a la clase de activo cuando demos clic en cada uno de los items
+
+            [routerLinkActiveOptions]="{ exact: true }": esto siginifica que le pondra la clase de activo solo al item que le hayamos dado clic, y se la quitara al anterior que la tenia
+
+            routerLink: este hace que se pueda bavegar a las paginas por medio de los items o btn correspondientes, sin que el navegador haga un refresh o se recarge -->
+            <li
+            routerLink="region"
+            routerLinkActive="active"
+            class="list-group-item">Buscar Región
+            </li>
+
+            <li
+            routerLink="capital"
+            routerLinkActive="active"
+            class="list-group-item">Buscar Capital
+            </li>
+
+        </ul>

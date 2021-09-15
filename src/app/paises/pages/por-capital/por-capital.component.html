@@ -1,0 +1,26 @@
+<h2 class="animate__animated animate__fadeInUp">Por Capital</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+       <app-pais-input 
+       (onEnter)="buscar( $event )" placeholder="Buscar Capital..."><!--escucha el evento que emite la funcion buscar desde el paisInput.ts que a su ves escuha del la funcion buscar de porPais.ts-->
+       </app-pais-input>
+    </div>
+</div>
+
+<div *ngIf="ConError" class="alert alert-danger"><!--el *ngIf en este caso hace referencia al mensaje de error que se mostrara en caso de que la busqueda sea erronea o no se encuentr un resultado-->
+      <div class="col text-center">
+        no encontramos resultados de la busqueda {{ termino }}
+     </div>
+
+     <div class="row img-error">
+      <img src="https://image.flaticon.com/icons/png/512/4456/4456159.png"  alt="">
+     </div>
+</div>
+
+<div *ngIf="paises.length > 0" class="row"><!--el *ngIf con esesigno de admiracion hace referencia a que si hay error, entonces no mostrara la tabla, y en caso de no haber ningun error, mostrara la tabla correctamente-->
+    <div class="col">
+      <app-pais-tabla [paises]="paises"></app-pais-tabla><!--[paises]="paises" hace referencia al *ngFor="let pais of paises; let indice=index" que se encuentra en pais-tabla.component-->
+    </div>
+</div>

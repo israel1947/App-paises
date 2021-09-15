@@ -1,0 +1,48 @@
+<!--*ngIf="!pais; quiere decir que si no hay ningun pais, no mostrara nada. Pero por otro lado el else divPais hace referecia a que si hay un resultado con un pais valido, entonces mostrara el ng-template #divPais -->
+<div *ngIf="!pais; else divPais"
+ class="alert alert-info">
+    Por favor espere....
+</div>
+
+
+<ng-template #divPais>
+<div class="row">
+    <div class="col-12">
+        <h1>País: <small>{{pais.name}}</small></h1>
+    </div>
+</div>
+
+<div class=" container container-info-pais">
+    <div class="bandera-responsive">
+        <h3>Bandera</h3>
+        <img [src]="pais.flag" class="" alt="bandera del pais {{pais}}">
+    </div>
+
+    <div class=" col "> 
+        <h3>Información</h3>
+        <ul class="list-group lista-info-pais">
+            <li class="list-group-item"><strong>Zona Horaria: </strong>{{pais.timezones}}</li>
+            <li class="list-group-item"><strong>Poblacion: </strong>{{pais.population | number}}</li>
+            <li class="list-group-item"><strong>Frontera: </strong>{{pais.borders}}</li>
+        </ul>
+    </div>
+</div>
+
+<h3>Traducciones</h3>
+<div class="container row">
+    <div class="col ">
+        <span class="badge bg-primary ms-1">{{pais.translations.de}}</span>
+        <span class="badge bg-primary ms-1">{{pais.translations.es}}</span>
+        <span class="badge bg-primary ms-1">{{pais.translations.fr}}</span>
+        <span class="badge bg-primary ms-1">{{pais.translations.ja}}</span>
+        <span class="badge bg-primary ms-1">{{pais.translations.br}}</span>
+        <span class="badge bg-primary ms-1">{{pais.translations.pt}}</span>
+        <span class="badge bg-primary ms-1">{{pais.translations.nl}}</span>
+        <span class="badge bg-primary ms-1">{{pais.translations.hr}}</span>
+        <span class="badge bg-primary ms-1">{{pais.translations.fa}}</span>
+    </div>
+</div>
+
+<pre class="mt-5"></pre>
+
+</ng-template>

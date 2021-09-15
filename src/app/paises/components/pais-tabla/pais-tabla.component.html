@@ -1,0 +1,23 @@
+<table >
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Bandera</th>
+            <th>Nombre</th>
+            <th>Poblacion</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="table table-hover animate__animated animate__fadeInUp" *ngFor="let pais of paises; let indice=index" ><!--gracias a let indice=index podemos acceder al indice del elemento e imprimirlo es decir imprimir su numero corrspondiente siempre recordando que un array empieza en base a 0 -->
+            <td>{{indice+1}}</td>
+            <td><img class="small-flag" [src]="pais.flag"></td>
+            <td>{{pais.capital}}, {{pais.name}}</td>
+            <td>{{pais.population | number}}</td><!--al agregar el caracter de la tuberia más el numero, este mostrara el numero de la poblacion con su formato de miles asi:4,890,379-->
+            <td>
+                <a [routerLink]="['/pais', pais.alpha2Code]">ver...</a><!--la ruta al ser construida por nosotros, es necesario que lo hagamos dentro de llaves cuadradas-->
+            </td>
+        </tr>
+
+    </tbody>
+</table>

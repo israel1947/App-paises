@@ -1,0 +1,53 @@
+
+<div class="animate__animated animate__fadeInUp">
+<h3 >Buscar por Region: <small>{{regionActivada | titlecase}}</small></h3><!--{{regionActivada | titlecase}}muestra la region seleccionada en los btns y lo hace con su primera letra en mayuscula-->
+
+<div class="row">
+    <div class="col">
+        <button
+      *ngFor="let region of regiones"
+        class="btn btn-outline-primary"
+        [class]="getClassCss(region)"
+        (click)="activaRegion(region)"
+        >
+            {{region | titlecase}}
+        </button>
+    </div>
+</div>
+</div>
+
+<div *ngIf="paises.length > 0" class="row "><!--el *ngIf con esesigno de admiracion hace referencia a que si hay error, entonces no mostrara la tabla, y en caso de no haber ningun error, mostrara la tabla correctamente-->
+  <div class="col">
+    <app-pais-tabla [paises]="paises"></app-pais-tabla><!--[paises]="paises" hace referencia al *ngFor="let pais of paises; let indice=index" que se encuentra en pais-tabla.component-->
+  </div>
+</div>
+
+<!--opciones
+
+1).[class.btn-primary]="region === regionActivada"
+
+ [class.abc]="region === regionActivada" esto lo que hace es preguntar si uno de los items (region) es igual a la regionActivada y si eso es verdadero, entonces agregara la clase que se le asigne
+
+ 2). [ngClass]="{
+            'btn-primary':regionActivada===region,
+            'btn-outline-primary':regionActivada !==region
+        }"
+esta es una segunda opcion, a diferencia a 1, está evalua las dos condiciones, es decir: que evalua si el item al que le damos click tiene la clase btn-primary, y si no la tiene se la agrega y le quita la clase de btn-outline-primary. y viseversa.
+
+3). [class]="(region ===regionActivada) ? 'btn btn-primary': ' btn btn-outline-primary' "
+este quiere decir exctamente lo mismo, pero a diferencia de los otros es muchos mas corto y mas eficiente porque solo se hace una unica evalucion.La cual es que en caso de que el item seleccionado no tenga la clase btn btn-primary, sino la otra clase, entonces se le eliminara esa clase y se le asignara btn btn-primary 
+
+4). la cuarta opcion es crear un metodo desde el archivo ts donde se haga todo de la siguiente manera
+
+* en el archivo ts se crea el metodo
+
+getClassCss(region:string){
+    return (region ===this.regionActivada) ? 'btn btn-primary': ' btn btn-outline-primary';
+  }
+
+* luego en el html se manda a llamar ese metodo de la siguiente manera
+
+[class]="getClassCss(region)"
+
+
+-->

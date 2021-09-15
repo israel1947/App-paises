@@ -1,0 +1,38 @@
+<h2 class="animate__animated animate__fadeInUp">Por País</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+       <app-pais-input 
+       (onEnter)="buscar( $event )" 
+       (onDebounce)="sugerencias( $event )" 
+       placeholder="Buscar País..." ><!--escucha el evento que emite la funcion buscar desde el paisInput.ts-->
+       </app-pais-input>
+    </div>
+
+
+    <!--Html de las sugerencias de busqueda-->
+    <ul *ngIf="ocultarSugerecias"
+     class="list-group b-sugerencias">
+      <li  *ngFor="let pais of paisesSugeridos"
+       class="list-group-item list-group-item-action">
+       <a [routerLink]="['/pais', pais.alpha2Code]">{{pais.name}}</a><!--esta porcion de codigo permite que el enlace que me aparece en la barra de sugerencia, sea navegable, es decir que al darle clic me lleve hasta la pagina de info de ese enlace(pais)-->
+      </li>
+    </ul>
+
+
+<div *ngIf="ConError" class="alert alert-danger"><!--el *ngIf en este caso hace referencia al mensaje de error que se mostrara en caso de que la busqueda sea erronea o no se encuentr un resultado-->
+      <div class="col text-center">
+        no encontramos resultados de la busqueda {{ termino }}
+     </div>
+
+     <div class="row img-error">
+      <img src="https://image.flaticon.com/icons/png/512/4456/4456159.png"  alt="">
+     </div>
+</div>
+
+<div *ngIf="paises.length > 0" class="row animate__animated animate__fadeInUp"><!--el *ngIf con esesigno de admiracion hace referencia a que si hay error, entonces no mostrara la tabla, y en caso de no haber ningun error, mostrara la tabla correctamente-->
+    <div class="col">
+      <app-pais-tabla [paises]="paises"></app-pais-tabla><!--[paises]="paises" hace referencia al *ngFor="let pais of paises; let indice=index" que se encuentra en pais-tabla.component-->
+    </div>
+</div>
